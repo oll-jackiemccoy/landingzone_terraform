@@ -1,7 +1,7 @@
 # Terraform Landing Zone
 
 This guide walks you through creating your **Management/Payer Account (MPA)**, setting up an **AWS Organization**, and bootstrapping **remote Terraform state** with S3 + DynamoDB locking.
----
+
 
 ## Prerequisites
 
@@ -35,9 +35,11 @@ aws dynamodb create-table \
   --attribute-definitions AttributeName=LockID,AttributeType=S \
   --key-schema AttributeName=LockID,KeyType=HASH \
   --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
-### Create S3 Bucket
+```
+### Create S3 bucket
 ```bash
 aws s3api create-bucket \
   --bucket terraformollionstatebucket \
   --region us-east-1
+```
 
