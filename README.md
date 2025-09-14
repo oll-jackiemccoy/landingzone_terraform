@@ -16,6 +16,7 @@ This guide walks you through creating your **Management/Payer Account (MPA)**, s
 1. Go to [AWS](https://aws.amazon.com/) and **Create a new AWS account**.  
 2. Complete billing setup (credit card, contact info).  
 3. Sign in with the **root user** once, enable **MFA**, and then create an **admin IAM user/role** for daily work.
+
 ## 2. Set Up AWS Organizations
 
 1. From the MPA, go to **AWS Organizations** → **Create organization** → **Enable all features**.
