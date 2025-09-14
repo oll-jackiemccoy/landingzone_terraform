@@ -18,4 +18,26 @@ This guide walks you through creating your **Management/Payer Account (MPA)**, s
 3. Sign in with the **root user** once, enable **MFA**, and then create an **admin IAM user/role** for daily work.
 ## 2. Set Up AWS Organizations
 
-1. From the MPA, go to **AWS Organizations** → **Create organization** → **Enable all features**.  
+1. From the MPA, go to **AWS Organizations** → **Create organization** → **Enable all features**.
+## 3. Bootstrap Remote Terraform State
+
+We’ll create an **S3 bucket** for Terraform state and a **DynamoDB table** for state locking.
+
+### Example values
+- Bucket: `terraformollionstatebucket`  
+- Region: `us-east-1`  
+- DynamoDB table: `terraform-locks`  
+
+### Create DynamoDB table
+```bash
+aws dynamodb create-table \
+  --table-name terraform-locks \
+  --attribute-definitions AttributeName=LockID,AttributeType=S \
+  --key-schema AttributeName=LockID,KeyType=HASH \
+  --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+### Create S3 Bucket
+```bash
+aws s3api create-bucket \
+  --bucket terraformollionstatebucket \
+  --region us-east-1
+
